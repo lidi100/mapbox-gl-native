@@ -30,23 +30,14 @@ ${CXX} --version
 # Ensure mason is on the PATH
 export PATH="`pwd`/.mason:${PATH}" MASON_DIR="`pwd`/.mason"
 
-# Start the mock X server
-if [ -f /etc/init.d/xvfb ] ; then
-    mapbox_time "start_xvfb" \
-    sh -e /etc/init.d/xvfb start
-    sleep 2 # sometimes, xvfb takes some time to start up
-fi
-
-# Make sure we're connecting to xvfb
-export DISPLAY=:99.0
-
 mapbox_time "checkout_mason" \
 git submodule update --init .mason
+pushd mason && git checkout mesa-12.0.1 && popd
 
 # Install and set up to load a more recent version of mesa
 mapbox_time "install_mesa" \
-mason install mesa 11.2.2
-export LD_LIBRARY_PATH="`mason prefix mesa 11.2.2`/lib:${LD_LIBRARY_PATH:-}"
+mason install mesa 12.0.1
+export LD_LIBRARY_PATH="`mason prefix mesa 12.0.1`/lib:${LD_LIBRARY_PATH:-}"
 
 # Install and set up to load awscli
 pip install --user awscli
