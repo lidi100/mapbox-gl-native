@@ -4,7 +4,6 @@
 
 #include <cassert>
 
-#include <GL/gl.h>
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
 #include <gbm.h>

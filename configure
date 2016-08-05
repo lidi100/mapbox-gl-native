@@ -109,7 +109,6 @@ print_flags boost cflags
 print_flags boost_libprogram_options static_libs
 print_flags openssl static_libs cflags ldflags
 print_flags libcurl static_libs cflags ldflags
-print_flags glfw static_libs cflags ldflags
 print_flags libpng static_libs cflags ldflags
 print_flags libjpeg-turbo static_libs cflags ldflags
 print_flags sqlite static_libs cflags ldflags

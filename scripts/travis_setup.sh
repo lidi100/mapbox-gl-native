@@ -34,10 +34,16 @@ mapbox_time "checkout_mason" \
 git submodule update --init .mason
 pushd mason && git checkout mesa-12.0.1 && popd
 
+# Install libdrm, required for Mesa EGL support
+mapbox_time "install_libdrm" \
+mason install libdrm 2.4.70
+export PKG_CONFIG_PATH="`mason prefix libdrm 2.4.70`/lib/pkgconfig:${PKG_CONFIG_PATH:-}"
+
 # Install and set up to load a more recent version of mesa
 mapbox_time "install_mesa" \
 mason install mesa 12.0.1
 export LD_LIBRARY_PATH="`mason prefix mesa 12.0.1`/lib:${LD_LIBRARY_PATH:-}"
+export PKG_CONFIG_PATH="`mason prefix mesa 12.0.1`/lib/pkgconfig:${PKG_CONFIG_PATH:-}"
 
 # Install and set up to load awscli
 pip install --user awscli

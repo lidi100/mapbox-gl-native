@@ -30,8 +30,8 @@
     #include <GLES2/gl2ext.h>
 #else
     #define GL_GLEXT_PROTOTYPES
-    #include <GL/gl.h>
-    #include <GL/glext.h>
+    #include <EGL/egl.h>
+    #include <EGL/eglext.h>
 #endif
 
 namespace mbgl {
